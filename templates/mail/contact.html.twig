@@ -1,0 +1,32 @@
+{% extends '@EmailsQueue/layout/email.html.twig' %}
+
+{% block maincontent %}
+    <tr>
+        <td bgcolor="#ffffff" style="padding: 30px 20px 10px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 15px; line-height: 24px;">
+            Contact mail
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff" style="padding: 30px 20px 10px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 15px; line-height: 24px;">
+            <table>
+                <tr>
+                    <td style="width:100px;">Nom:</td>
+                    <td>{{ message.name }}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{ message.message }}</td>
+                </tr>
+                <tr>
+                    <td>Message:</td>
+                    <td>{{ message.message|nl2br }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff" style="padding: 10px 20px 30px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 15px; line-height: 24px; border-bottom: 1px solid #f6f6f6;">
+            Contact mail
+        </td>
+    </tr>			
+{% endblock %}

@@ -1,0 +1,36 @@
+{
+    "name": "julien-its/emails-queue-s8",
+    "type": "symfony-bundle",
+    "description": "Symfony Easy Emails Queue Bundle for Symfony 8",
+    "keywords": ["symfony", "bundle", "email", "queue", "mailer"],
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Julien IT Solutions",
+            "email": "contact@julien-gustin.be",
+            "homepage": "http://www.julien-gustin.be"
+        }
+    ],
+    "require": {
+        "php": ">=8.4",
+        "symfony/config": "^8.0",
+        "symfony/console": "^8.0",
+        "symfony/dependency-injection": "^8.0",
+        "symfony/framework-bundle": "^8.0",
+        "symfony/http-kernel": "^8.0",
+        "symfony/mailer": "^8.0",
+        "symfony/routing": "^8.0",
+        "symfony/twig-bundle": "^8.0",
+        "doctrine/doctrine-bundle": "^2.13 || ^3.0",
+        "doctrine/orm": "^3.3",
+        "twig/twig": "^3.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "JulienIts\\EmailsQueueBundle\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
