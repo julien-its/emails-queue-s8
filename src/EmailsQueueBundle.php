@@ -32,16 +32,38 @@ final class EmailsQueueBundle extends AbstractBundle
         }
 
         // Explicit attribute mapping so the entities are found whatever the app's auto_mapping setting
+        $mapping = [
+            'EmailsQueueBundle' => [
+                'type' => 'attribute',
+                'is_bundle' => false,
+                'dir' => __DIR__.'/Entity',
+                'prefix' => 'JulienIts\EmailsQueueBundle\Entity',
+                'alias' => 'EmailsQueue',
+            ],
+        ];
+
+        // If the app declares named entity managers, a global "orm.mappings" key would make
+        // Doctrine create an extra "default" entity manager holding only our entities.
+        // Attach the mapping to the app's default entity manager instead.
+        $defaultEm = null;
+        $entityManagers = [];
+        foreach ($builder->getExtensionConfig('doctrine') as $config) {
+            $defaultEm = $config['orm']['default_entity_manager'] ?? $defaultEm;
+            $entityManagers += $config['orm']['entity_managers'] ?? [];
+        }
+
+        if ([] === $entityManagers) {
+            $builder->prependExtensionConfig('doctrine', ['orm' => ['mappings' => $mapping]]);
+
+            return;
+        }
+
+        $defaultEm ??= array_key_first($entityManagers);
+
         $builder->prependExtensionConfig('doctrine', [
             'orm' => [
-                'mappings' => [
-                    'EmailsQueueBundle' => [
-                        'type' => 'attribute',
-                        'is_bundle' => false,
-                        'dir' => __DIR__.'/Entity',
-                        'prefix' => 'JulienIts\EmailsQueueBundle\Entity',
-                        'alias' => 'EmailsQueue',
-                    ],
+                'entity_managers' => [
+                    $defaultEm => ['mappings' => $mapping],
                 ],
             ],
         ]);
